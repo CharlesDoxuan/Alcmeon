@@ -41,7 +41,64 @@
     // Example placeholder
     console.log("Insert your Alcméon script here");
   </script>
+<div class="chat-entry-container">
+  <input type="text" id="entryInput" placeholder="Une question ? L'assistant est là !" />
+  <button id="entryButton" title="Envoyer">
+    💬
+  </button>
+</div>
 
+<style>
+  .chat-entry-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 10px 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+  #entryInput {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    width: 220px;
+  }
+  #entryButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  document.getElementById('entryButton').addEventListener('click', function () {
+    const message = document.getElementById('entryInput').value;
+    if (message.trim() !== "") {
+      // Optional: Log or simulate sending the message
+      console.log("User asked:", message);
+
+      // Simulate opening the webchat full screen
+      // Replace this with your real widget opening function
+      if (typeof AlcmeonChatWidget !== "undefined" && typeof AlcmeonChatWidget.open === "function") {
+        AlcmeonChatWidget.open();  // Example if your SDK exposes this
+      } else {
+        alert("Webchat would launch now – demo mode");
+      }
+
+      // Optionally clear input
+      document.getElementById('entryInput').value = "";
+    }
+  });
+</script>
 <script>
   window.alcmeonInMessageConfig = {
     langCode: 'fr',
